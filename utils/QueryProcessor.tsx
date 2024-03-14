@@ -17,9 +17,17 @@ export default function QueryProcessor(query: string): string {
 
   if (query.toLowerCase().includes("plus")) {
     var regex = /\d+/g;
-    var matches = query.match(regex);
+    var matches = query.match(regex)?.map((elem) => +elem);
     if (matches != null) {
-      return matches.reduce((sum, current) => sum + +current, 0).toString();
+      return matches.reduce((sum, current) => sum + current, 0).toString();
+    }
+  }
+
+  if (query.toLowerCase().includes("largest")) {
+    var regex = /\d+/g;
+    var matches = query.match(regex)?.map((elem) => +elem);
+    if (matches != null) {
+      return matches.reduce((max, current) => Math.max(max, current)).toString();
     }
   }
 
