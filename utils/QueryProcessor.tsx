@@ -45,7 +45,7 @@ export default function QueryProcessor(query: string): string {
     matches?.filter(isSquare);
     matches?.filter(isCube);
     if (matches != null) {
-      return matches[0].toString();
+      return matches.map(elem => elem.toString()).join(', ');
     }
   }
 
