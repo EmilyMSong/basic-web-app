@@ -57,6 +57,14 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("minus")) {
+    var regex = /\d+/g;
+    var matches = query.match(regex)?.map((elem) => +elem);
+    if (matches != null) {
+      return (matches[0] - matches[1]).toString();
+    }
+  }
+
   return "";
 }
 
