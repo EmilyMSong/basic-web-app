@@ -36,14 +36,18 @@ export default function QueryProcessor(query: string): string {
     var regex = /\d+/g;
     var matches = query.match(regex)?.map((elem) => +elem);
     if (matches != null) {
-      return matches.reduce((max, current) => Math.max(max, current)).toString();
+      return matches?.reduce((max, current) => Math.max(max, current)).toString();
     }
   }
 
-  if (query.toLowerCase().includes("square")) {
+  if (query.toLowerCase().includes("cube")) {
     var regex = /\d+/g;
     var matches = query.match(regex)?.map((elem) => +elem);
-    matches?.filter((elem) => Math.sqrt(elem) * Math.sqrt(elem) == elem)
+    matches?.filter((elem) => Math.sqrt(elem) * Math.sqrt(elem) == elem);
+    matches?.filter((elem) => Math.cbrt(elem) * Math.cbrt(elem) * Math.cbrt(elem) == elem);
+    if (matches != null) {
+      return matches[0].toString();
+    }
   }
 
   return "";
