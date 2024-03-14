@@ -65,6 +65,15 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("prime")) {
+    var regex = /\d+/g;
+    var matches = query.match(regex)?.map((elem) => +elem);
+    matches?.filter(isPrime);
+    if (matches != null) {
+      return matches.map(elem => elem.toString()).join(', ');
+    }
+  }
+
   return "";
 }
 
@@ -76,4 +85,13 @@ function isSquare(elem: number) {
 function isCube(elem: number) {
   var root = Math.floor(Math.cbrt(elem))
   return root * root * root == elem
+}
+
+function isPrime(elem: number) {
+  for (let i = 2; i < elem; i++) {
+    if (elem % i == 0) {
+        return false;
+    }
+  }
+  return true;
 }
