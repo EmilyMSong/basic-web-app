@@ -40,11 +40,11 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
-  if (query.toLowerCase().includes("cube")) {
+  if (query.toLowerCase().includes("square")) {
     var regex = /\d+/g;
     var matches = query.match(regex)?.map((elem) => +elem);
-    matches?.filter((elem) => Math.sqrt(elem) * Math.sqrt(elem) == elem);
-    matches?.filter((elem) => Math.cbrt(elem) * Math.cbrt(elem) * Math.cbrt(elem) == elem);
+    matches?.filter((elem) => Math.floor(Math.sqrt(elem)) * Math.floor(Math.sqrt(elem)) == elem);
+    matches?.filter((elem) => Math.floor(Math.cbrt(elem)) * Math.floor(Math.cbrt(elem)) * Math.floor(Math.cbrt(elem)) == elem);
     if (matches != null) {
       return matches[0].toString();
     }
