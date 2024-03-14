@@ -31,7 +31,6 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
-
   if (query.toLowerCase().includes("largest")) {
     var regex = /\d+/g;
     var matches = query.match(regex)?.map((elem) => +elem);
@@ -43,12 +42,22 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("square")) {
     var regex = /\d+/g;
     var matches = query.match(regex)?.map((elem) => +elem);
-    matches?.filter((elem) => Math.floor(Math.sqrt(elem)) * Math.floor(Math.sqrt(elem)) == elem);
-    matches?.filter((elem) => Math.floor(Math.cbrt(elem)) * Math.floor(Math.cbrt(elem)) * Math.floor(Math.cbrt(elem)) == elem);
+    matches?.filter(isSquare);
+    matches?.filter(isCube);
     if (matches != null) {
       return matches[0].toString();
     }
   }
 
   return "";
+}
+
+function isSquare(elem: number) {
+  var root = Math.floor(Math.sqrt(elem))
+  return root * root == elem
+}
+
+function isCube(elem: number) {
+  var root = Math.floor(Math.cbrt(elem))
+  return root * root * root == elem
 }
