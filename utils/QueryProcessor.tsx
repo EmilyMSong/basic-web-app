@@ -15,5 +15,13 @@ export default function QueryProcessor(query: string): string {
     return ("Emily Song");
   }
 
+  if (query.toLowerCase().includes("plus")) {
+    var regex = /\d+/g;
+    var matches = query.match(regex);
+    if (matches != null) {
+      return matches.reduce((sum, current) => sum + +current, 0).toString();
+    }
+  }
+
   return "";
 }
