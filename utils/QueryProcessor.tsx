@@ -23,12 +23,27 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("multiplied")) {
+    var regex = /\d+/g;
+    var matches = query.match(regex)?.map((elem) => +elem);
+    if (matches != null) {
+      return matches.reduce((sum, current) => sum * current, 1).toString();
+    }
+  }
+
+
   if (query.toLowerCase().includes("largest")) {
     var regex = /\d+/g;
     var matches = query.match(regex)?.map((elem) => +elem);
     if (matches != null) {
       return matches.reduce((max, current) => Math.max(max, current)).toString();
     }
+  }
+
+  if (query.toLowerCase().includes("square")) {
+    var regex = /\d+/g;
+    var matches = query.match(regex)?.map((elem) => +elem);
+    matches?.filter((elem) => Math.sqrt(elem) * Math.sqrt(elem) == elem)
   }
 
   return "";
