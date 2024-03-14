@@ -49,6 +49,14 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("power")) {
+    var regex = /\d+/g;
+    var matches = query.match(regex)?.map((elem) => +elem);
+    if (matches != null) {
+      return Math.pow(matches[0], matches[1]).toString();
+    }
+  }
+
   return "";
 }
 
